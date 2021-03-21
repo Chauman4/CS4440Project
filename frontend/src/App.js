@@ -1,39 +1,28 @@
 import './App.css';
 import React, { useState } from 'react';
+import { useHistory, Switch, Route, Link, HashRouter } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import HeatMap from "./components/HeatMap";
+import NavBar from "./components/NavBar";
+import Home from "./components/Home";
+import BarGraph from "./components/BarGraph";
+import data from "./components/DummyData/bargraph.json";
 
 function App() {
-  const [state, setState] = useState(0)
+
   return (
-    <div className="App">
-      <header className="App-header">
-        CS4440 Project: Traffic Collision Data Visualizer
-      </header>
-      <Button>Hello</Button>
-      <head>
-      <meta name="viewport" content="width=device-width, initial-scale=1"/>
-      </head>
-      <body>
-
-      <div class="sidenav">
-        <a href="#">Home</a>
-        <a href="#">Query One</a>
-        <a href="#">Query Two</a>
-        <a href="#">Query Three</a>
-        <a href="#">Query Four</a>
-        <a href="#">...</a>
+    <HashRouter>
+      <div className="App">
+        <NavBar/>
+        <Switch>
+          <Route exact path="/" component={Home}/>
+          <Route path="/1" component={HeatMap}/>
+          {console.log("App", data)}
+          <Route path="/2" render={() => <BarGraph data={data}/>}/>
+        </Switch>
       </div>
-
-      <div class="main">
-        <h2>Sidenav Example</h2>
-        <p>This sidenav is always shown.</p>
-        <p>Tutorial from: https://www.w3schools.com/howto/howto_js_sidenav.asp .</p>
-        <p>We can easily adjust the width of this navbar in app.css.</p>
-      </div>
-
-      </body>
-    </div>
+    </HashRouter>
   );
 }
 
