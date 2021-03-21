@@ -24,9 +24,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b5db82c7-bc86-4f67-9e1c-a2fdb732fd99" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/backend/traffic-collision-data-from-2010-to-present.csv" beforeDir="false" />
-    </list>
+    <list default="true" id="b5db82c7-bc86-4f67-9e1c-a2fdb732fd99" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
