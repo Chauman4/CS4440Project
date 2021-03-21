@@ -72,4 +72,10 @@
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
+  <component name="WindowStateProjectService">
+    <state x="292" y="32" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1616360123382">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="292" y="32" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1366.728@0.0.1366.728" timestamp="1616360123382" />
+  </component>
 </project>
