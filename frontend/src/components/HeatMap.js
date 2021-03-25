@@ -1,7 +1,4 @@
-import React, { useState } from 'react';
-import { useHistory, Switch, Route, Link, BrowserRouter } from 'react-router-dom';
-import Button from 'react-bootstrap/Button';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import React from 'react';
 
 class HeatMap extends React.Component {
 
