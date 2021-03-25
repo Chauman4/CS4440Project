@@ -1,14 +1,18 @@
 import React, { useState } from 'react';
 import { useHistory, Switch, Route, Link, BrowserRouter } from 'react-router-dom';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 function NavBar() {
     return (
-        <div class="sidenav">
-            CS4440 Project: Traffic Collision Data Visualizer
-            <Link to="/">Home</Link>
-            <Link to="/1">HeatMap</Link>
-            <Link to="/2">Collisions</Link>
+        <div class="navbar navbar-expand-lg navbar-inverse">
+            <div class="navbar-inner">
+                <div class="container">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><Link to="/">Home</Link></li>
+                        <li><Link to="/1">HeatMap</Link></li>
+                        <li><Link to="/2">Collisions</Link></li>
+                    </ul>
+                </div>
+            </div>
         </div>
     )
 }
