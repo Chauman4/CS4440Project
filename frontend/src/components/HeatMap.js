@@ -7,7 +7,7 @@ const { tableau } = window;
 
 function HeatMap() {  
 
-    const url = "https://public.tableau.com/profile/nabil.patel#!/vizhome/LATrafficHeatMapTest/Sheet1";
+    const url = "https://public.tableau.com/shared/CS2B8RPZ9?:display_count=y&:origin=viz_share_link";
     const ref = useRef(null);
     
 
