@@ -6,7 +6,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import HeatMap from "./components/HeatMap";
 import NavBar from "./components/NavBar";
 import Home from "./components/Home";
-import BarGraph from "./components/BarGraph";
+// import BarGraph from "./components/BarGraph";
+import BarGraphContainer from "./components/BarGraphContainer";
 import data from "./components/DummyData/bargraph.json";
 
 function App() {
@@ -14,13 +15,17 @@ function App() {
   return (
     <HashRouter>
       <div className="App">
+        
         <NavBar/>
-        <Switch>
+        
+        <div>
+          <Switch>
           <Route exact path="/" component={Home}/>
           <Route path="/1" component={HeatMap}/>
-          {console.log("App", data)}
-          <Route path="/2" render={() => <BarGraph data={data}/>}/>
+          <Route path="/2" render={() => <BarGraphContainer data={data}/>}/>
         </Switch>
+        </div>
+        
       </div>
     </HashRouter>
   );

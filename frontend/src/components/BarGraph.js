@@ -1,6 +1,4 @@
-import React, { useState } from 'react';
-import { useHistory, Switch, Route, Link, BrowserRouter } from 'react-router-dom';
-import Button from 'react-bootstrap/Button';
+import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {
     XYPlot,
@@ -13,7 +11,7 @@ import {
 class BarGraph extends React.Component {
     render () {
         const data = this.props.data;
-        console.log(this.props)
+        // console.log(this.props)
         const chartWidth = 800;
         const chartHeight = 500;
         const chartDomain = [0, chartHeight];
