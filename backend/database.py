@@ -14,10 +14,16 @@ def importdata():
     print(len(df["DR Number"].unique()))
     df = df.drop_duplicates(subset=["DR Number"])
     print(len(df["DR Number"]))
+    numpyarray = pd.Series(df["Location"]).apply(eval)
+    print(numpyarray)
+    ###.values.reshape(404804, 1)
+    dataframe = pd.DataFrame(numpyarray.tolist(), columns=['latitude', 'longitude'])
+    df[['latitude', 'longitude']] = dataframe
+    ###df[['latitude', 'longitude']] = dict(df["Location"].values.reshape(404804, 1))
     jsondata = json.loads(df.to_json(orient='records'))
-    df.to_csv("data.csv", sep=",", encoding="utf-8")
     collisionsdata.insert_many(jsondata)
     cleandata()
+    df.to_csv("data.csv", sep=",", encoding="utf-8")
     makelocationid(df["Address"])
 
 def cleandata():
