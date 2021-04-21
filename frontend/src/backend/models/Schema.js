@@ -29,11 +29,14 @@ const collisionsSchema = mongoose.Schema({
     crossStreet: {
         type: String
     },
-    location: {
-        type: Object
-    },
     zipCode: {
         type: Number
+    },
+    latitude: {
+        type: String
+    },
+    longitude: {
+        type: String
     }
 })
 
