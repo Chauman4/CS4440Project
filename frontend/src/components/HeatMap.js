@@ -7,7 +7,7 @@ const { tableau } = window;
 
 function HeatMap() {  
 
-    const url = "https://public.tableau.com/shared/TSMJRKBBM?:display_count=y&:origin=viz_share_link";
+    const url = "https://public.tableau.com/views/LACollisions/Sheet1?:language=en&:origin=viz_share_link&:display_count=y&publish=yes";
     const ref = useRef(null);
     
 
