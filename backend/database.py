@@ -10,6 +10,7 @@ def importdata():
     df = pd.read_csv("collisiondata/collisiondata/traffic-collision-data-from-2010-to-present.csv")
     print(len(df["Address"].unique()))
     df["Address"] = df["Address"].apply(lambda x: " ".join(x.split()))
+    df["Cross Street"] = df["Cross Street"].apply(lambda x: " ".join(x.split()))
     print(len(df["Address"].unique()))
     print(len(df["DR Number"].unique()))
     df = df.drop_duplicates(subset=["DR Number"])
