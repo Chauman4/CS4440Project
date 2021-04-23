@@ -9,6 +9,7 @@ import Home from "./components/Home";
 // import BarGraph from "./components/BarGraph";
 import BarGraphContainer from "./components/BarGraphContainer";
 import data from "./components/DummyData/bargraph.json";
+import { findByAge, findByGender, closeConnection} from './server.js'
 
 class App extends Component {
   constructor(props) {
@@ -24,14 +25,16 @@ class App extends Component {
       address: '',
       crossStreet: '',
       location: '',
-      zipCodes: ''
+      zipCodes: '',
+      age: ""
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.callFunction = this.callFunction.bind(this);
   }
 
   handleChange(event) {
-    this.setState({ id: event.target.value });
+    this.setState({ age: event.target.value });
   }
 
   handleSubmit(event) {
@@ -39,6 +42,22 @@ class App extends Component {
     fetch(`/api/collisions/${encodeURIComponent(this.state.id)}`)
       .then(response => response.json())
       .then(state => this.setState(state));
+  }
+
+  callFunction(event) {
+    event.preventDefault();
+    // const MongoClient = require('mongodb').MongoClient;
+    // const url = 'mongodb://localhost:27017';
+    // const dbName = 'LATrafficCollisions';
+    // const client = new MongoClient(url, { useNewUrlParser: true });
+    // findByAge(30).then(response => {
+    //   console.log(response)
+    //   response[0].json()
+    // }, (state) => this.setState({...this.state}));
+    // response => result[0];
+    // console.log(result);
+    // state => this.setState({...this.state, age: String(result)})
+    // return (<p>Hello</p>)
   }
 
   render () {
@@ -57,12 +76,15 @@ class App extends Component {
         </div>
         
       </div>
-      <form onSubmit={this.handleSubmit}>
+      <div>
+        {this.state.age}
+      </div>
+      <form onSubmit={this.callFunction}>
             <label >Enter collision id: </label>
             <input
               id="name"
               type="text"
-              value={this.state.id}
+              value={this.state.age}
               onChange={this.handleChange}
             />
             <button type="submit">Submit</button>
