@@ -9,7 +9,28 @@ import Home from "./components/Home";
 // import BarGraph from "./components/BarGraph";
 import BarGraphContainer from "./components/BarGraphContainer";
 import data from "./components/DummyData/bargraph.json";
-import { findByAge, findByGender, closeConnection} from './server.js'
+import { getCollisionByGender, testing } from "./backend/controllers/collisionController.js";
+import axios from "axios";
+
+
+const MongoClient = require('mongodb').MongoClient;
+const assert = require('assert');
+
+// Connection URL
+const url = 'mongodb://localhost:27017';
+
+// Database Name
+// const dbName = 'LATrafficCollisions';
+// const client = new MongoClient(url);
+// // Use connect method to connect to the server
+// client.connect(function(err) {
+//   //assert.equal(null, err);
+//   console.log('Connected successfully to server');
+
+//   const db = client.db(dbName);
+
+//   client.close();
+// });
 
 class App extends Component {
   constructor(props) {
@@ -19,22 +40,26 @@ class App extends Component {
       drNumber: '',
       dateOccured: '',
       timeOccured: '',
-      area: '',
-      sex: '',
-      descent: '',
+      areaName: '',
+      victimSex: '',
+      victimDescent: '',
       address: '',
       crossStreet: '',
-      location: '',
-      zipCodes: '',
-      age: ""
+      longitude: '',
+      latitude: '',
+      zipCode: '',
+      quadrant: '',
+      collisions: [] 
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.callFunction = this.callFunction.bind(this);
+    this.handleChangeGen = this.handleChangeGen.bind(this);
+    this.handleSubmitGen = this.handleSubmitGen.bind(this);
+    this.displayCollisions = this.displayCollisions.bind(this);
   }
 
   handleChange(event) {
-    this.setState({ age: event.target.value });
+    this.setState({ id: event.target.value });
   }
 
   handleSubmit(event) {
@@ -43,22 +68,47 @@ class App extends Component {
       .then(response => response.json())
       .then(state => this.setState(state));
   }
-
-  callFunction(event) {
-    event.preventDefault();
-    // const MongoClient = require('mongodb').MongoClient;
-    // const url = 'mongodb://localhost:27017';
-    // const dbName = 'LATrafficCollisions';
-    // const client = new MongoClient(url, { useNewUrlParser: true });
-    // findByAge(30).then(response => {
-    //   console.log(response)
-    //   response[0].json()
-    // }, (state) => this.setState({...this.state}));
-    // response => result[0];
-    // console.log(result);
-    // state => this.setState({...this.state, age: String(result)})
-    // return (<p>Hello</p>)
+  
+  handleChangeGen(event) {
+    this.setState({ victimSex: event.target.value });
   }
+
+  handleSubmitGen(event) {
+    event.preventDefault();
+    axios.get(`http://localhost:5000/api/collisions/getGender/${encodeURIComponent(this.state.victimSex)}`)
+    .then((response) => {
+      const data = response.data;
+      console.log(data);
+      this.setState({ collisions : data });
+      console.log('Data has been received!!');
+    })
+    .catch(() => {
+      alert('Error retrieving data!!!');
+    });
+  }
+
+
+  displayCollisions = (collision) => {
+
+    if (!collision) return null;
+    console.log(collision)
+
+    return (
+      <div>
+        <h3>{collision.drNumber}</h3>
+        <p>{collision.dateOccured}</p>
+        <p>{collision.timeOccured}</p>
+        <p>{collision.areaName}</p>
+        <p>{collision.victimSex}</p>
+        <p>{collision.victimDescent}</p>
+        <p>{collision.address}</p>
+        <p>{collision.crossStreet}</p>
+        <p>{collision.longitude}</p>
+        <p>{collision.latitude}</p>
+        <p>{collision.zipCode}</p>
+        <p>{collision.quadrant}</p>
+      </div>)
+  };
 
   render () {
     return (
@@ -76,29 +126,45 @@ class App extends Component {
         </div>
         
       </div>
-      <div>
-        {this.state.age}
-      </div>
-      <form onSubmit={this.callFunction}>
+      <form onSubmit={this.handleSubmit}>
             <label >Enter collision id: </label>
             <input
               id="name"
               type="text"
-              value={this.state.age}
+              value={this.state.id}
               onChange={this.handleChange}
             />
             <button type="submit">Submit</button>
         </form>
-        <p>{this.state.drNumber}</p>
+        <form onSubmit={this.handleSubmitGen}>
+            <label >Enter gender: </label>
+            <input
+              id="name"
+              type="text"
+              value={this.state.sex}
+              onChange={this.handleChangeGen}
+            />
+            <button type="submit">Submit</button>
+        </form>
+        {/* <p>{this.state.drNumber}</p>
         <p>{this.state.dateOccured}</p>
         <p>{this.state.timeOccured}</p>
-        <p>{this.state.area}</p>
-        <p>{this.state.sex}</p>
-        <p>{this.state.descent}</p>
+        <p>{this.state.areaName}</p>
+        <p>{this.state.victimSex}</p>
+        <p>{this.state.victimDescent}</p>
         <p>{this.state.address}</p>
         <p>{this.state.crossStreet}</p>
-        <p>{this.state.location}</p>
-        <p>{this.state.zipCodes}</p>
+        <p>{this.state.longitude}</p>
+        <p>{this.state.latitude}</p>
+        <p>{this.state.quadrant}</p>
+        <p>{this.state.zipCode}</p> */}
+        <div>
+          {this.displayCollisions(this.state.collisions[0])}
+        </div>
+        {/* <div>
+          {getCollisionByGender}
+        </div> */}
+        {/* {testing} */}
     </HashRouter>
 
     )

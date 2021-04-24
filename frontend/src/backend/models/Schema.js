@@ -37,9 +37,14 @@ const collisionsSchema = mongoose.Schema({
     },
     longitude: {
         type: String
+    },
+    quadrant: {
+        type: Number
     }
 })
 
-const Collisions = mongoose.model('Collisions', collisionsSchema)
+//module.exports = mongoose.model('Collisions', collisionsSchema)
 
+ const Collisions = mongoose.model('Collisions', collisionsSchema)
+//module.exports = mongoose.model('Collisions', collisionsSchema)
 export default Collisions
