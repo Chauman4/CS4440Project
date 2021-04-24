@@ -22,11 +22,24 @@ export const getCollisionById  = asyncHandler(async(req, res) => {
     }
 })
 
-//getUserById function to retrieve user by id
+//getUserById function to retrieve user by gender
 export const getCollisionByGender  = asyncHandler(async(req, res) => {
     console.log(req.body)
     console.log(req.params)
-    const collisions = await Collisions.find({victimSex: req.params.sex}, (req, res) => console.log(req, res))
+    const collisions = await Collisions.find({victimSex: req.params.victimSex}, (req, res) => console.log(req, res))
+    console.log(collisions)
+    res.json(collisions)
+})
+
+//getUserById function to retrieve user by gender, sex, and age
+export const getCollisionByRaceAgeGender  = asyncHandler(async(req, res) => {
+    console.log(req.body)
+    console.log(req.params)
+    const collisions = await Collisions.find({
+        victimSex: req.params.victimSex, 
+        victimAge: { $lte: req.params.victimMaxAge, $gte: req.params.victimMinAge}, 
+        victimDescent: req.params.victimDescent
+    }, (req, res) => console.log(req, res))
     console.log(collisions)
     res.json(collisions)
 })

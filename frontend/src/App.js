@@ -42,6 +42,9 @@ class App extends Component {
       timeOccured: '',
       areaName: '',
       victimSex: '',
+      victimAge: '',
+      victimMaxAge: '',
+      victimMinAge: '',
       victimDescent: '',
       address: '',
       crossStreet: '',
@@ -56,6 +59,10 @@ class App extends Component {
     this.handleChangeGen = this.handleChangeGen.bind(this);
     this.handleSubmitGen = this.handleSubmitGen.bind(this);
     this.displayCollisions = this.displayCollisions.bind(this);
+    this.handleChangeMaxAge = this.handleChangeMaxAge.bind(this);
+    this.handleChangeMinAge = this.handleChangeMinAge.bind(this);
+    this.handleChangeRace = this.handleChangeRace.bind(this);
+
   }
 
   handleChange(event) {
@@ -73,9 +80,35 @@ class App extends Component {
     this.setState({ victimSex: event.target.value });
   }
 
+  handleChangeRace(event) {
+    this.setState({ victimDescent: event.target.value });
+  }
+
+  handleChangeMaxAge(event) {
+    this.setState({ victimMaxAge: event.target.value });
+  }
+  
+  handleChangeMinAge(event) {
+    this.setState({ victimMinAge: event.target.value });
+  }
+
   handleSubmitGen(event) {
     event.preventDefault();
     axios.get(`http://localhost:5000/api/collisions/getGender/${encodeURIComponent(this.state.victimSex)}`)
+    .then((response) => {
+      const data = response.data;
+      console.log(data);
+      this.setState({ collisions : data });
+      console.log('Data has been received!!');
+    })
+    .catch(() => {
+      alert('Error retrieving data!!!');
+    });
+  }
+
+  handleSubmitRaceAgeGender(event) {
+    event.preventDefault();
+    axios.get(`http://localhost:5000/api/collisions/getRaceAgeGender/${encodeURIComponent(this.state.victimSex)}/${encodeURIComponent(this.state.victimMaxAge)}/${encodeURIComponent(this.state.victimMinAge)}/${encodeURIComponent(this.state.victimDescent)}`)
     .then((response) => {
       const data = response.data;
       console.log(data);
@@ -100,6 +133,7 @@ class App extends Component {
         <p>{collision.timeOccured}</p>
         <p>{collision.areaName}</p>
         <p>{collision.victimSex}</p>
+        <p>{collision.victimAge}</p>
         <p>{collision.victimDescent}</p>
         <p>{collision.address}</p>
         <p>{collision.crossStreet}</p>
@@ -141,8 +175,39 @@ class App extends Component {
             <input
               id="name"
               type="text"
-              value={this.state.sex}
+              value={this.state.victimSex}
               onChange={this.handleChangeGen}
+            />
+            <button type="submit">Submit</button>
+        </form>
+        <form onSubmit={this.handleSubmitRaceAgeGender}>
+            <label >Enter gender: </label>
+            <input
+              id="gender"
+              type="text"
+              value={this.state.victimSex}
+              onChange={this.handleChangeGen}
+            />
+            <label >Enter Min Age: </label>
+            <input
+              id="minAge"
+              type="text"
+              value={this.state.victimMinAge}
+              onChange={this.handleChangeMinAge}
+            />
+            <label >Enter Max Age: </label>
+            <input
+              id="maxAge"
+              type="text"
+              value={this.state.victimMaxAge}
+              onChange={this.handleChangeMaxAge}
+            />
+            <label >Enter Race: </label>
+            <input
+              id="descent"
+              type="text"
+              value={this.state.victimDescent}
+              onChange={this.handleChangeRace}
             />
             <button type="submit">Submit</button>
         </form>
