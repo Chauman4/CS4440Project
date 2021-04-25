@@ -6,6 +6,7 @@ import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import BarGraph from './BarGraph';
 import { Col, Form } from "react-bootstrap";
+import './BarGraphContainer.css';
 
 function BarGraphContainer(props) {    
     const [data, setData] = useState()
@@ -47,7 +48,11 @@ function BarGraphContainer(props) {
     return (
         <div className="container">
             <div className="btn-group">
-                <DropdownButton id="dropdown-basic-button" title="ZipCodes" show={isOpen} onClick={handleOpen}>
+                <DropdownButton 
+                    id="dropdown-basic-button" 
+                    title="ZipCodes" 
+                    show={isOpen} 
+                    onClick={handleOpen}>
                 {
                     data ? data.map((element, idx) => { 
                         console.log(element._id)

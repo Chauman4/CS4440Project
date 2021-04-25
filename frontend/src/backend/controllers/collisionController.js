@@ -47,7 +47,7 @@ export const getCollisionByRaceAgeGender  = asyncHandler(async(req, res) => {
             }
         }, {
             '$group': {
-                '_id': '$zipCode', 
+                '_id': '$zipCodes', 
                 'count': {
                     '$sum': 1
                 }
