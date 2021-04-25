@@ -8,7 +8,7 @@ with open('data.csv','r') as csvinput:
 
         all = []
         row = next(reader)
-        row.append('quadrent')
+        row.append('quadrant')
         all.append(row)
 
 
