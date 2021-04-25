@@ -17,8 +17,13 @@ function BarGraphContainer(props) {
 
     useEffect(() => {
         setData(props.data)
+        // var cleanedData = props.data.map((element) => ({
+        //     x: element[Object.keys(element)[0]],
+        //     y: element[Object.keys(element)[1]]
+        // })).sort((a, b) => a.x > b.x ? 1 : -1)
         setFilteredData(props.data)
         setIsActive(props.data.map((element) => false))
+        console.log("should run once")
     }, [props.data])
 
     function handleOpen(e) {
@@ -48,23 +53,26 @@ function BarGraphContainer(props) {
     return (
         <div className="container">
             <div className="btn-group">
-                <DropdownButton 
-                    id="dropdown-basic-button" 
-                    title="ZipCodes" 
-                    show={isOpen} 
-                    onClick={handleOpen}>
-                {
-                    data ? data.map((element, idx) => { 
-                        console.log(element._id)
-                        console.log(element.count)
-                        return (
-                            <Dropdown.Item as="option" value={element._id} eventKey={idx} onSelect={handleMenuItemClick} active={isActive[idx]}>{element._id}</Dropdown.Item> 
-                        )
-                    }) : null
-                }
-                <Dropdown.Divider/>
-                <Dropdown.Item as="button" value="All" eventKey="All" active={isAll} onSelect={handleMenuItemClick}>All</Dropdown.Item>
-                </DropdownButton>
+                {console.log("HERE", data)}
+                {data && data.length ? 
+                    <DropdownButton 
+                        id="dropdown-basic-button" 
+                        title="ZipCodes" 
+                        show={isOpen} 
+                        onClick={handleOpen}>
+                        {
+                            console.log(data),
+                            data ? data.map((element, idx) => { 
+                                console.log(element)
+                                return (
+                                    <Dropdown.Item as="option" key={idx} value={element.x} eventKey={idx} onSelect={handleMenuItemClick} active={isActive[idx]}>{element.x}</Dropdown.Item> 
+                                )
+                            }) : null
+                        }
+                        <Dropdown.Divider/>
+                        <Dropdown.Item as="button" value="All" eventKey="All" active={isAll} onSelect={handleMenuItemClick}>All</Dropdown.Item>
+                    </DropdownButton>
+                : null}
             </div>
             {filteredData? <BarGraph data={filteredData}/> : null}
         </div>
