@@ -47,11 +47,13 @@ function BarGraphContainer(props) {
     return (
         <div className="container">
             <div className="btn-group">
-                <DropdownButton id="dropdown-basic-button" title="Months" show={isOpen} onClick={handleOpen}>
+                <DropdownButton id="dropdown-basic-button" title="ZipCodes" show={isOpen} onClick={handleOpen}>
                 {
                     data ? data.map((element, idx) => { 
+                        console.log(element._id)
+                        console.log(element.count)
                         return (
-                            <Dropdown.Item as="option" value={element.x} eventKey={idx} onSelect={handleMenuItemClick} active={isActive[idx]}>{element.x}</Dropdown.Item> 
+                            <Dropdown.Item as="option" value={element._id} eventKey={idx} onSelect={handleMenuItemClick} active={isActive[idx]}>{element._id}</Dropdown.Item> 
                         )
                     }) : null
                 }

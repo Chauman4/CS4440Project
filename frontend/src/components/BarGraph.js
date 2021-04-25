@@ -17,11 +17,20 @@ class BarGraph extends React.Component {
   }
     render () {
         const data = this.props.data;
+        console.log(data)
+        console.log(data[0])
         const {index} = this.state;
-        const dataWithColor = data.map((d, i) => ( {...d, color : Number(i !== index)}));
+        var maxHeight = 0
+        const dataWithColor = data.map(function(d, i) { 
+            if (d.count > maxHeight) {
+              maxHeight = d.count
+            }
+            return ({x: d._id.toString(), y: d.count, color : Number(i !== index)})
+          });
+        console.log(dataWithColor)
         const chartWidth = 800;
         const chartHeight = 500;
-        const chartDomain = [0, chartHeight];
+        const chartDomain = [0, maxHeight];
         return (
             <XYPlot
                 xType="ordinal"
@@ -33,10 +42,11 @@ class BarGraph extends React.Component {
                 <XAxis />
                 <YAxis />
                 <VerticalBarSeries data={dataWithColor}
-                onNearestX={(d, {index}) => this.setState({index})}
+                 onNearestX={(d, {index}) => this.setState({index})}
                 />
                 <LabelSeries
-          data={data.map((obj) => {
+          data={dataWithColor.map((obj) => {
+            console.log(obj)
             return { ...obj, label: obj.y.toString() };
           })}
           labelAnchorX="middle"

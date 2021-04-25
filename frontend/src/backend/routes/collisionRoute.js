@@ -12,7 +12,7 @@ const router = express.Router()
 router.route('/').get(getCollisionById)
 
 // express router method to create route for getting users by id
-// router.route('/:id').get(getCollisionById)
+router.route('/:id').get(getCollisionById)
 
 // express router method to create route for getting users by id
 router.route('/getGender/:victimSex').get(getCollisionByGender)

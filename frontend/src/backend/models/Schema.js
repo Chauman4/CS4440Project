@@ -45,6 +45,6 @@ const collisionsSchema = mongoose.Schema({
 
 //module.exports = mongoose.model('Collisions', collisionsSchema)
 
- const Collisions = mongoose.model('Collisions', collisionsSchema)
+const Collisions = mongoose.model('Collisions', collisionsSchema)
 //module.exports = mongoose.model('Collisions', collisionsSchema)
 export default Collisions

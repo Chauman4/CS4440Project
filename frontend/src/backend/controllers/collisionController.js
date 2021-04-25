@@ -35,13 +35,44 @@ export const getCollisionByGender  = asyncHandler(async(req, res) => {
 export const getCollisionByRaceAgeGender  = asyncHandler(async(req, res) => {
     console.log(req.body)
     console.log(req.params)
+    const pipeline = [
+        {
+            '$match': {
+                'victimSex': req.params.victimSex, 
+                'victimAge': {
+                    '$lte': parseInt(req.params.victimMaxAge), 
+                    '$gte': parseInt(req.params.victimMinAge)
+                }, 
+                'victimDescent': req.params.victimDescent
+            }
+        }, {
+            '$group': {
+                '_id': '$zipCode', 
+                'count': {
+                    '$sum': 1
+                }
+            }
+        }
+    ]
+    console.log('before agg')
+    const collisions = await Collisions.aggregate(pipeline)
+    res.json(collisions)
+
+
+        
+    // console.log(typeof(collisions))
+    //res = collisions;
+    // res = typeof(collisions)
+    //res.json(collisions)
+    /*
     const collisions = await Collisions.find({
         victimSex: req.params.victimSex, 
-        victimAge: { $lte: req.params.victimMaxAge, $gte: req.params.victimMinAge}, 
+        victimAge: { $lte: parseInt(req.params.victimMaxAge), $gte: parseInt(req.params.victimMinAge)}, 
         victimDescent: req.params.victimDescent
     }, (req, res) => console.log(req, res))
     console.log(collisions)
     res.json(collisions)
+    */
 })
 
 //get collisions by gender 

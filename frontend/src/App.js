@@ -9,8 +9,9 @@ import Home from "./components/Home";
 // import BarGraph from "./components/BarGraph";
 import BarGraphContainer from "./components/BarGraphContainer";
 import data from "./components/DummyData/bargraph.json";
-import { getCollisionByGender, testing } from "./backend/controllers/collisionController.js";
+// import { getCollisionByGender, testing } from "./backend/controllers/collisionController.js";
 import axios from "axios";
+import Collisions from './backend/models/Schema.js'
 
 
 const MongoClient = require('mongodb').MongoClient;
@@ -54,45 +55,46 @@ class App extends Component {
       quadrant: '',
       collisions: [] 
     };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleChangeGen = this.handleChangeGen.bind(this);
-    this.handleSubmitGen = this.handleSubmitGen.bind(this);
-    this.displayCollisions = this.displayCollisions.bind(this);
-    this.handleChangeMaxAge = this.handleChangeMaxAge.bind(this);
-    this.handleChangeMinAge = this.handleChangeMinAge.bind(this);
-    this.handleChangeRace = this.handleChangeRace.bind(this);
+    // this.handleChange = this.handleChange.bind(this);
+    // this.handleSubmit = this.handleSubmit.bind(this);
+    // this.handleChangeGen = this.handleChangeGen.bind(this);
+    // this.handleSubmitGen = this.handleSubmitGen.bind(this);
+    // this.displayCollisions = this.displayCollisions.bind(this);
+    // this.handleChangeMaxAge = this.handleChangeMaxAge.bind(this);
+    // this.handleChangeMinAge = this.handleChangeMinAge.bind(this);
+    // this.handleChangeRace = this.handleChangeRace.bind(this);
+    // this.handleSubmitRaceAgeGender = this.handleSubmitRaceAgeGender.bind(this);
 
   }
 
-  handleChange(event) {
+  handleChange = (event) => {
     this.setState({ id: event.target.value });
   }
 
-  handleSubmit(event) {
+  handleSubmit = (event) => {
     event.preventDefault();
     fetch(`/api/collisions/${encodeURIComponent(this.state.id)}`)
       .then(response => response.json())
       .then(state => this.setState(state));
   }
   
-  handleChangeGen(event) {
+  handleChangeGen = (event) => {
     this.setState({ victimSex: event.target.value });
   }
 
-  handleChangeRace(event) {
+  handleChangeRace = (event) => {
     this.setState({ victimDescent: event.target.value });
   }
 
-  handleChangeMaxAge(event) {
+  handleChangeMaxAge = (event) => {
     this.setState({ victimMaxAge: event.target.value });
   }
   
-  handleChangeMinAge(event) {
+  handleChangeMinAge = (event) => {
     this.setState({ victimMinAge: event.target.value });
   }
 
-  handleSubmitGen(event) {
+  handleSubmitGen = (event) => {
     event.preventDefault();
     axios.get(`http://localhost:5000/api/collisions/getGender/${encodeURIComponent(this.state.victimSex)}`)
     .then((response) => {
@@ -106,11 +108,12 @@ class App extends Component {
     });
   }
 
-  handleSubmitRaceAgeGender(event) {
+  handleSubmitRaceAgeGender = (event) => {
     event.preventDefault();
     axios.get(`http://localhost:5000/api/collisions/getRaceAgeGender/${encodeURIComponent(this.state.victimSex)}/${encodeURIComponent(this.state.victimMaxAge)}/${encodeURIComponent(this.state.victimMinAge)}/${encodeURIComponent(this.state.victimDescent)}`)
     .then((response) => {
       const data = response.data;
+      console.log(typeof(data))
       console.log(data);
       this.setState({ collisions : data });
       console.log('Data has been received!!');
@@ -124,7 +127,7 @@ class App extends Component {
   displayCollisions = (collision) => {
 
     if (!collision) return null;
-    console.log(collision)
+    //console.log(collision)
 
     return (
       <div>
@@ -225,6 +228,8 @@ class App extends Component {
         <p>{this.state.zipCode}</p> */}
         <div>
           {this.displayCollisions(this.state.collisions[0])}
+          {console.log(typeof(this.state.collisions))}
+          <BarGraphContainer data = {this.state.collisions}/>
         </div>
         {/* <div>
           {getCollisionByGender}
