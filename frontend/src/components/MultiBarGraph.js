@@ -5,7 +5,8 @@ import {
     XAxis,
     YAxis,
     VerticalBarSeries,
-    LabelSeries
+    LabelSeries,
+    Hint
 } from "react-vis";
 
 class MultiBarGraph extends React.Component {
@@ -14,6 +15,7 @@ class MultiBarGraph extends React.Component {
         this.state = {
             multiData: props.data,
             index: null,
+            hoverData: null,
         }
     }
 
@@ -28,7 +30,7 @@ class MultiBarGraph extends React.Component {
     render () {
         const data = this.state.multiData;
         const index = this.state.index;
-        var colorArr = ["#F44336", "#2196F3", "#FBC02D"]
+        var colorArr = ["#2196F3", "#F44336", "#FBC02D"]
         var maxHeight = 0
         Object.keys(data).map((key) => {
             for (const point in data[key]) {
@@ -50,6 +52,7 @@ class MultiBarGraph extends React.Component {
                 color={colorArr[i]}
                 data={data}
                 key={i}
+                onValueMouseOver={(d) => this.setState({...this.state, hoverData: d})}
                 onNearestX={(d, {index}) => this.setState({index: index})}
             />
         )
@@ -60,10 +63,11 @@ class MultiBarGraph extends React.Component {
                 width={chartWidth}
                 height={chartHeight}
                 yDomain={chartDomain}
-                onMouseLeave = {() => this.setState({index : null})}
+                onMouseLeave = {() => this.setState({index : null, hoverData: null})}
             >
                 <XAxis />
                 <YAxis />
+                {!!this.state.hoverData && <Hint value={this.state.hoverData} />}
                 {verticalBars? verticalBars : null}
             </XYPlot>
         )

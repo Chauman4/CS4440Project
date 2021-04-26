@@ -31,7 +31,7 @@ export const getCollisionByGender  = asyncHandler(async(req, res) => {
     res.json(collisions)
 })
 
-//getUserById function to retrieve user by gender, sex, and age
+//getUserById function to retrieve collision by gender, sex, and age
 export const getCollisionByRaceAgeGender  = asyncHandler(async(req, res) => {
     console.log(req.body)
     console.log(req.params)
@@ -47,7 +47,7 @@ export const getCollisionByRaceAgeGender  = asyncHandler(async(req, res) => {
             }
         }, {
             '$group': {
-                '_id': '$zipCodes', 
+                '_id': '$zipCode', 
                 'count': {
                     '$sum': 1
                 }
@@ -57,6 +57,47 @@ export const getCollisionByRaceAgeGender  = asyncHandler(async(req, res) => {
     console.log('before agg')
     const collisions = await Collisions.aggregate(pipeline)
     res.json(collisions)
+})
+
+//getCollisionByHoliday function to retrieve user by gender, sex, and age
+export const getCollisionByHoliday  = asyncHandler(async(req, res) => {
+    console.log(req.body)
+    console.log(req.params)
+    const pipeline = [
+        {
+          '$project': {
+            'dateOccured': 1, 
+            'date': {
+              '$dayOfYear': '$dateOccured'
+            }, 
+            'year': {
+              '$year': '$dateOccured'
+            }
+          }
+        }, {
+          '$match': {
+            'date': {
+              '$in': [
+                1, 15, 46, 76, 145, 185, 244, 281, 315, 326, 359
+              ]
+            }, 
+            'year': parseInt(req.params.year)
+          }
+        }, {
+          '$group': {
+            '_id': '$date', 
+            'count': {
+              '$sum': 1
+            }
+          }
+        }
+      ]
+    console.log('before agg')
+    const collisions = await Collisions.aggregate(pipeline)
+    res.json(collisions)
+})
+
+        
     // console.log(typeof(collisions))
     //res = collisions;
     // res = typeof(collisions)
@@ -70,7 +111,7 @@ export const getCollisionByRaceAgeGender  = asyncHandler(async(req, res) => {
     console.log(collisions)
     res.json(collisions)
     */
-})
+
 
 //get collisions by gender 
 //param: gender ('M' or 'F')

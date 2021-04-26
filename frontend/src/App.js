@@ -15,6 +15,7 @@ import Collisions from './backend/models/Schema.js'
 import BarGraphRaceAgeGender from './components/BarGraphRaceAgeGender';
 import BarGraphGenderByMonth from './components/BarGraphGenderByMonth';
 
+import BarGraphHolidays from './components/BarGraphHolidays';
 
 const MongoClient = require('mongodb').MongoClient;
 const assert = require('assert');
@@ -50,8 +51,9 @@ class App extends Component {
           <Route exact path="/" component={Home}/>
           <Route path="/1" component={HeatMap}/>
           <Route path="/2" component={BarGraphRaceAgeGender}/>
-          <Route path="/4" component={getCollisionGenderByMonth}/>
-        </Switch>
+          <Route path="/4" component={BarGraphGenderByMonth}/>
+          <Route path="/9" component={BarGraphHolidays}/>
+          </Switch>
         </div>  
       </div>
     </HashRouter>

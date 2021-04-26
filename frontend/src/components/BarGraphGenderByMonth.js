@@ -37,6 +37,7 @@ class BarGraphGenderByMonth extends React.Component {
     render() {
         return (
             <div>
+                {console.log(this.state.collisions)}
                 {this.state.collisions && Object.keys(this.state.collisions).length ? <MultiBarGraphContainer data={this.state.collisions}/> : null}
             </div>
         )
