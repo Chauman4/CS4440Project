@@ -10,6 +10,7 @@ function NavBar() {
                         <li className="active"><Link to="/">Home</Link></li>
                         <li><Link to="/1">HeatMap</Link></li>
                         <li><Link to="/2">Collisions</Link></li>
+                        <li><Link to="/9">Holidays</Link></li>
                     </ul>
                 </div>
             </div>
