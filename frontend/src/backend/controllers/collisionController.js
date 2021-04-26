@@ -57,9 +57,6 @@ export const getCollisionByRaceAgeGender  = asyncHandler(async(req, res) => {
     console.log('before agg')
     const collisions = await Collisions.aggregate(pipeline)
     res.json(collisions)
-
-
-        
     // console.log(typeof(collisions))
     //res = collisions;
     // res = typeof(collisions)
@@ -89,6 +86,31 @@ export const getCollisionByRaceAgeGender  = asyncHandler(async(req, res) => {
     //     res.status(404)
     //     throw new Error('Collision by gender failed')
     // }
+
+export const getCollisionGenderByMonth  = asyncHandler(async(req, res) => {
+    console.log(req.body)
+    console.log(req.params)
+    const pipeline = [
+        {
+            '$match': {
+                'victimSex': req.params.victimSex
+            }
+        }, {
+            '$group': {
+                '_id': {
+                    '$month': '$dateOccurred'
+                }, 
+                'count': {
+                    '$sum': 1
+                }
+            }
+        }
+    ]
+    console.log('before agg')
+    const collisions = await Collisions.aggregate(pipeline)
+    res.json(collisions)
+})
+
 export async function testing() {
     const test = await Collisions.find({victimSex: "M"});
     return test

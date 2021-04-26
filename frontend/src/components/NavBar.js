@@ -7,9 +7,10 @@ function NavBar() {
             <div className="navbar-inner">
                 <div className="container">
                     <ul className="nav navbar-nav">
-                        <li className="active"><Link to="/">Home</Link></li>
+                        <li><Link to="/">Home</Link></li>
                         <li><Link to="/1">HeatMap</Link></li>
                         <li><Link to="/2">Collisions</Link></li>
+                        <li><Link to="/4">GenderByMonth</Link></li>
                     </ul>
                 </div>
             </div>
