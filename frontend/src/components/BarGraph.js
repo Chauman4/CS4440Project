@@ -13,26 +13,13 @@ import {
 class BarGraph extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       data: props.data,
       hoverData: null,
     };
-
- 
   }
   render() {
-    const {
-      data,
-      hoverData
-    } = this.state;
-
-    if(!data) {
-      return (<div className="App">
-        Loading...
-      </div>)
-    }
-
+    var data = this.props.data;
     return (
       <div className="App">
         <XYPlot
@@ -42,16 +29,17 @@ class BarGraph extends Component {
             left: 70
           }}
           xType="ordinal"
-          onMouseLeave={() => this.setState({hoverData: null})}
+          onMouseLeave={() => this.setState({...this.state, hoverData: null})}
         >
           {
             <VerticalBarSeries
-              onValueMouseOver={(d) => this.setState({hoverData: d})}
+              onValueMouseOver={(d) => this.setState({...this.state, hoverData: d})}
               data={data}
             />
           }
-
-          {!!hoverData && <Hint value={hoverData} />}
+          {console.log("HERE", data)}
+          
+          {!!this.state.hoverData && <Hint value={this.state.hoverData} />}
           <XAxis />
           <YAxis />
         </XYPlot>
