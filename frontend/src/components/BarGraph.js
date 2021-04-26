@@ -28,7 +28,7 @@ class BarGraph extends React.Component {
             return ({x: d.x, y: d.y, color : Number(i !== index)})
           });
         // console.log(dataWithColor)
-        const chartWidth = 800;
+        const chartWidth = 900;
         const chartHeight = 500;
         const chartDomain = [0, maxHeight];
         return (

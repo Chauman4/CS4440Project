@@ -24,7 +24,8 @@ class BarGraphHolidays extends Component {
             zipCode: '',
             quadrant: '',
             year: '',
-            collisions: [] 
+            collisions: [],
+            holidays: {1: "New Year's", 15: "MLK Day", 46: "President's Day", 76: "St. Patrick's Day", 145: "Memorial Day", 185: "Independence Day", 244: "Labor Day", 281: "Columbus Day", 315: "Veteran's Day", 326: "Thanksgiving", 359: "Christmas" }
         }
     }
 
@@ -38,11 +39,16 @@ class BarGraphHolidays extends Component {
             const data = response.data;
             console.log(typeof(data))
             console.log(data);
-            var cleanedData = data.map((element) => ({
+            var cleanedData = data.map((element, i) => ({
                 x: element[Object.keys(element)[0]],
                 y: element[Object.keys(element)[1]]
             })).sort((a, b) => a.x > b.x ? 1 : -1)
-            this.setState({ collisions : cleanedData });
+            
+            var labledData = cleanedData.map((element) => ({
+                x: this.state.holidays[element[Object.keys(element)[0]]],
+                y: element[Object.keys(element)[1]]
+            }))
+            this.setState({ collisions : labledData });
             console.log('Data has been received!!');
         })
         .catch(() => {
