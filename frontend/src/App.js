@@ -13,7 +13,7 @@ import data from "./components/DummyData/bargraph.json";
 import axios from "axios";
 import Collisions from './backend/models/Schema.js'
 import BarGraphRaceAgeGender from './components/BarGraphRaceAgeGender';
-
+import BarGraphHolidays from './components/BarGraphHolidays';
 
 const MongoClient = require('mongodb').MongoClient;
 const assert = require('assert');
@@ -46,10 +46,11 @@ class App extends Component {
         <NavBar/>    
         <div>
           <Switch>
-          <Route exact path="/" component={Home}/>
-          <Route path="/1" component={HeatMap}/>
-          <Route path="/2" component={BarGraphRaceAgeGender}/>
-        </Switch>
+            <Route exact path="/" component={Home}/>
+            <Route path="/1" component={HeatMap}/>
+            <Route path="/2" component={BarGraphRaceAgeGender}/>
+            <Route path="/9" component={BarGraphHolidays}/>
+          </Switch>
         </div>  
       </div>
     </HashRouter>
