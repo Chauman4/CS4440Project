@@ -66,7 +66,7 @@ export const getCollisionByHoliday  = asyncHandler(async(req, res) => {
     const pipeline = [
         {
           '$project': {
-            'dateOccured': 1, 
+            'dateOccurred': 1, 
             'date': {
               '$dayOfYear': '$dateOccurred'
             }, 
@@ -167,8 +167,8 @@ export const getAgeAndRank = asyncHandler(async(req, res) => {
             }
         }
     ]
-    const collisios = await Collisions.aggregate(pipeline)
-    res.json(collisios)
+    const collisions = await Collisions.aggregate(pipeline)
+    res.json(collisions)
 })
 
 export async function testing() {

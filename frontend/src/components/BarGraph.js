@@ -4,6 +4,7 @@ import { dsv } from 'd3-fetch';
 import {
   XYPlot,
   VerticalBarSeries,
+  HorizontalBarSeries,
   LineMarkSeries,
   XAxis,
   YAxis,
@@ -16,10 +17,19 @@ class BarGraph extends Component {
     this.state = {
       data: props.data,
       hoverData: null,
+      orientation: props.orientation
     };
   }
+
   render() {
     var data = this.props.data;
+    var orientation = this.state.orientation == "Horizontal" ? <HorizontalBarSeries
+      onValueMouseOver={(d) => this.setState({...this.state, hoverData: d})}
+      data={data}
+      /> : <VerticalBarSeries
+      onValueMouseOver={(d) => this.setState({...this.state, hoverData: d})}
+      data={data}
+      />
     return (
       <div className="App">
         <XYPlot
@@ -31,12 +41,7 @@ class BarGraph extends Component {
           xType="ordinal"
           onMouseLeave={() => this.setState({...this.state, hoverData: null})}
         >
-          {
-            <VerticalBarSeries
-              onValueMouseOver={(d) => this.setState({...this.state, hoverData: d})}
-              data={data}
-            />
-          }
+          {orientation}
           {console.log("HERE", data)}
           
           {!!this.state.hoverData && <Hint value={this.state.hoverData} />}

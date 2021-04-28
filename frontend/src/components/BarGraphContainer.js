@@ -14,6 +14,7 @@ function BarGraphContainer(props) {
     const [filteredData, setFilteredData] = useState()
     const [isActive, setIsActive] = useState([])
     const [isAll, setIsAll] = useState(true)
+    const [orientation, setOrientation] = useState()
 
     useEffect(() => {
         setData(props.data)
@@ -23,6 +24,7 @@ function BarGraphContainer(props) {
         // })).sort((a, b) => a.x > b.x ? 1 : -1)
         setFilteredData(props.data)
         setIsActive(props.data.map((element) => false))
+        setOrientation(props.orientation)
         console.log("should run once")
     }, [props.data])
 
@@ -74,7 +76,7 @@ function BarGraphContainer(props) {
                     </DropdownButton>
                 : null}
             </div>
-            {filteredData? <BarGraph data={filteredData}/> : null}
+            {filteredData? <BarGraph orientation={orientation} data={filteredData}/> : null}
         </div>
     )
 }

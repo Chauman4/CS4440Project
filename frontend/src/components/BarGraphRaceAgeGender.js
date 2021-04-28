@@ -185,7 +185,7 @@ class BarGraphRaceAgeGender extends Component {
                         {this.displayCollisions(this.state.collisions[0])}
                         {console.log(typeof(this.state.collisions))}
                         {/* <BarGraphContainer data = {data}/> */}
-                        <BarGraphContainer data={this.state.collisions}/>
+                        <BarGraphContainer orientation="Vertical" data={this.state.collisions}/>
                         {/* <div>
                         {getCollisionByGender}
                         </div> */}

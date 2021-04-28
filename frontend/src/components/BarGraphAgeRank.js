@@ -26,7 +26,7 @@ class BarGraphAgeRank extends Component {
             var cleanedData = data.map((element, i) => ({
                 x: element[Object.keys(element)[0]],
                 y: element[Object.keys(element)[1]]
-            }))
+            })).sort((a, b) => a.y > b.y ? -this.state.rank : this.state.rank)
             this.setState({collisions: cleanedData})
             console.log('Data has been received!!');
         })
@@ -48,7 +48,7 @@ class BarGraphAgeRank extends Component {
                         />
                         <button type="submit">Submit</button>
                 </form>
-                <BarGraphContainer data={this.state.collisions}/>
+                <BarGraphContainer orientation="Horizontal" data={this.state.collisions}/>
             </div>
         )
     }
