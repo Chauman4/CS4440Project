@@ -4,7 +4,8 @@ import {
     getCollisionByGender, 
     getCollisionByRaceAgeGender,
     getCollisionGenderByMonth,
-    getCollisionByHoliday
+    getCollisionByHoliday,
+    getAgeAndRank
 } from "../controllers/collisionController.js";
 import express from 'express'
 const router = express.Router()
@@ -25,5 +26,7 @@ router.route('/getRaceAgeGender/:victimSex/:victimMaxAge/:victimMinAge/:victimDe
 router.route('/getGenderByMonth/:victimSex').get(getCollisionGenderByMonth)
 // express router method to create route for getting users by id
 router.route('/getHoliday/:year').get(getCollisionByHoliday)
+
+router.route('/getAgeRank/:rank').get(getAgeAndRank)
 
 export default router

@@ -17,6 +17,7 @@ import BarGraphRaceAgeGender from './components/BarGraphRaceAgeGender';
 import BarGraphGenderByMonth from './components/BarGraphGenderByMonth';
 
 import BarGraphHolidays from './components/BarGraphHolidays';
+import BarGraphAgeRank from './components/BarGraphAgeRank';
 
 const MongoClient = require('mongodb').MongoClient;
 const assert = require('assert');
@@ -55,6 +56,7 @@ class App extends Component {
           <Route path="/4" component={BarGraphGenderByMonth}/>
           <Route path="/7" component={DateWMostCollisionsPerQuadrant}/>
           <Route path="/9" component={BarGraphHolidays}/>
+          <Route path="/11" component={BarGraphAgeRank}/>
           </Switch>
         </div>  
       </div>

@@ -3,7 +3,7 @@ import asyncHandler from 'express-async-handler'
 
 //getCollisions function to get all collisons
 export const getCollisions = asyncHandler(async(req, res) => {
-    const collisions = await Collisions.find({victimSex:'M'})
+    const collisions = await Collisions.find()
     res.json(collisions)
 })
 
@@ -150,6 +150,25 @@ export const getCollisionGenderByMonth  = asyncHandler(async(req, res) => {
     console.log('before agg')
     const collisions = await Collisions.aggregate(pipeline)
     res.json(collisions)
+})
+
+export const getAgeAndRank = asyncHandler(async(req, res) => {
+    const pipeline = [
+        {
+            '$group': {
+                '_id': '$victimAge', 
+                'count': {
+                    '$sum': 1
+                }
+            }
+        },{
+            '$sort' : {
+                'count': parseInt(req.params.rank)
+            }
+        }
+    ]
+    const collisios = await Collisions.aggregate(pipeline)
+    res.json(collisios)
 })
 
 export async function testing() {
