@@ -5,9 +5,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 const { tableau } = window;
 
-function HeatMap() {  
+function DateWMostCollisionsPerQuadrant() {  
 
-    const url = "https://public.tableau.com/views/LACollisionsHeatmap/Sheet1?:language=en&:display_count=y&publish=yes&:origin=viz_share_link";
+    const url = "https://public.tableau.com/views/LACollisions/Sheet22?:language=en&:display_count=y&publish=yes&:origin=viz_share_link";
     const ref = useRef(null);
     
 
@@ -29,4 +29,4 @@ function HeatMap() {
         </div>
     );
 }
-export default HeatMap;
+export default DateWMostCollisionsPerQuadrant;

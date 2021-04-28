@@ -11,6 +11,7 @@ function NavBar() {
                         <li><Link to="/1">HeatMap</Link></li>
                         <li><Link to="/2">Collisions</Link></li>
                         <li><Link to="/4">GenderByMonth</Link></li>
+                        <li><Link to="/7">Date With Most Collisions Per Quadrant</Link></li>
                         <li><Link to="/9">Holidays</Link></li>
                     </ul>
                 </div>

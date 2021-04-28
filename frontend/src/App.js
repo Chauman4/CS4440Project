@@ -4,6 +4,7 @@ import { useHistory, Switch, Route, Link, HashRouter } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import HeatMap from "./components/HeatMap";
+import DateWMostCollisionsPerQuadrant from "./components/DateWMostCollisionsPerQuadrant";
 import NavBar from "./components/NavBar";
 import Home from "./components/Home";
 // import BarGraph from "./components/BarGraph";
@@ -52,6 +53,7 @@ class App extends Component {
           <Route path="/1" component={HeatMap}/>
           <Route path="/2" component={BarGraphRaceAgeGender}/>
           <Route path="/4" component={BarGraphGenderByMonth}/>
+          <Route path="/7" component={DateWMostCollisionsPerQuadrant}/>
           <Route path="/9" component={BarGraphHolidays}/>
           </Switch>
         </div>  

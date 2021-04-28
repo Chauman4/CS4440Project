@@ -68,10 +68,10 @@ export const getCollisionByHoliday  = asyncHandler(async(req, res) => {
           '$project': {
             'dateOccured': 1, 
             'date': {
-              '$dayOfYear': '$dateOccured'
+              '$dayOfYear': '$dateOccurred'
             }, 
             'year': {
-              '$year': '$dateOccured'
+              '$year': '$dateOccurred'
             }
           }
         }, {
