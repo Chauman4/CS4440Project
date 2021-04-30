@@ -15,6 +15,8 @@ function BarGraphContainer(props) {
     const [isActive, setIsActive] = useState([])
     const [isAll, setIsAll] = useState(true)
     const [orientation, setOrientation] = useState()
+    const [xAxis, setXAxis] = useState()
+    const [yAxis, setYAxis] = useState()
 
     useEffect(() => {
         setData(props.data)
@@ -25,6 +27,8 @@ function BarGraphContainer(props) {
         setFilteredData(props.data)
         setIsActive(props.data.map((element) => false))
         setOrientation(props.orientation)
+        setXAxis(props.xAxis)
+        setYAxis(props.yAxis)
         console.log("should run once")
     }, [props.data])
 
@@ -59,7 +63,7 @@ function BarGraphContainer(props) {
                 {data && data.length ? 
                     <DropdownButton 
                         id="dropdown-basic-button" 
-                        title="ZipCodes" 
+                        title={xAxis} 
                         show={isOpen} 
                         onClick={handleOpen}>
                         {
@@ -76,7 +80,7 @@ function BarGraphContainer(props) {
                     </DropdownButton>
                 : null}
             </div>
-            {filteredData? <BarGraph orientation={orientation} data={filteredData}/> : null}
+            {filteredData? <BarGraph orientation={orientation} xAxis={xAxis} yAxis={yAxis} data={filteredData}/> : null}
         </div>
     )
 }

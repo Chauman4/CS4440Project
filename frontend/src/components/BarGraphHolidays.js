@@ -70,7 +70,7 @@ class BarGraphHolidays extends Component {
                         <button type="submit">Submit</button>
                 </form>
                 <div>
-                    <BarGraphContainer orientation="Vertical" data={this.state.collisions}/>
+                    <BarGraphContainer xAxis="Holiday" yAxis="Count" orientation="Vertical" data={this.state.collisions}/>
                 </div>
             </div>  
         )

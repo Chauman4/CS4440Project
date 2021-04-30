@@ -8,7 +8,8 @@ class BarGraphAgeRank extends Component {
         super(props);
         this.state = {
             rank: '',
-            collisions: []
+            collisions: [],
+            year: '',
         }
     }
 
@@ -16,9 +17,13 @@ class BarGraphAgeRank extends Component {
         this.setState({ rank: event.target.value });
     }
 
+    handleChangeYear = (event) => {
+        this.setState({ year: event.target.value });
+    }
+
     handleSubmitRank = (event) => {
         event.preventDefault();
-        axios.get(`http://localhost:5000/api/collisions/getAgeRank/${encodeURIComponent(this.state.rank)}`)
+        axios.get(`http://localhost:5000/api/collisions/getAgeRank/${encodeURIComponent(this.state.rank)}/${encodeURIComponent(this.state.year)}`)
         .then((response) => {
             const data = response.data;
             console.log(typeof(data))
@@ -26,7 +31,8 @@ class BarGraphAgeRank extends Component {
             var cleanedData = data.map((element, i) => ({
                 x: element[Object.keys(element)[0]],
                 y: element[Object.keys(element)[1]]
-            })).sort((a, b) => a.y > b.y ? -this.state.rank : this.state.rank)
+            }))
+            //.sort((a, b) => a.y > b.y ? -this.state.rank : this.state.rank)
             this.setState({collisions: cleanedData})
             console.log('Data has been received!!');
         })
@@ -46,9 +52,16 @@ class BarGraphAgeRank extends Component {
                         value={this.state.rank}
                         onChange={this.handleChangeRank}
                         />
+                    <label >Enter Year: </label>
+                    <input
+                        id="year"
+                        type="text"
+                        value={this.state.year}
+                        onChange={this.handleChangeYear}
+                        />
                         <button type="submit">Submit</button>
                 </form>
-                <BarGraphContainer orientation="Horizontal" data={this.state.collisions}/>
+                <BarGraphContainer xAxis="Age" yAxis="Count" orientation="Horizontal" data={this.state.collisions}/>
             </div>
         )
     }

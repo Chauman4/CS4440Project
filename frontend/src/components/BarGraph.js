@@ -17,7 +17,9 @@ class BarGraph extends Component {
     this.state = {
       data: props.data,
       hoverData: null,
-      orientation: props.orientation
+      orientation: props.orientation,
+      xAxis: props.xAxis,
+      yAxis: props.yAxis
     };
   }
 
@@ -29,7 +31,14 @@ class BarGraph extends Component {
       /> : <VerticalBarSeries
       onValueMouseOver={(d) => this.setState({...this.state, hoverData: d})}
       data={data}
-      />
+      />;
+    console.log("Hover Data")
+    console.log(this.state.hoverData)
+    if (!!this.state.hoverData) {
+      this.state.hoverData[this.state.xAxis] = this.state.hoverData["x"]; // Assign new key
+      this.state.hoverData[this.state.yAxis] = this.state.hoverData["y"]; // Assign new key
+
+    }
     return (
       <div className="App">
         <XYPlot

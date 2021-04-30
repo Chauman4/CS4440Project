@@ -29,7 +29,7 @@ router.route('/getGenderByMonth/:victimSex').get(getCollisionGenderByMonth)
 // express router method to create route for getting users by id
 router.route('/getHoliday/:year').get(getCollisionByHoliday)
 
-router.route('/getAgeRank/:rank').get(getAgeAndRank)
+router.route('/getAgeRank/:rank/:year').get(getAgeAndRank)
 
 router.route('/getGenderRatio/:rank').get(getGenderRatio)
 

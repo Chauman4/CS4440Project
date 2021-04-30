@@ -154,7 +154,20 @@ export const getCollisionGenderByMonth  = asyncHandler(async(req, res) => {
 
 export const getAgeAndRank = asyncHandler(async(req, res) => {
     const pipeline = [
-        {
+      {
+        '$project': {
+          'dateOccurred': 1, 
+          'victimAge': 1,
+          'year': {
+            '$year': '$dateOccurred'
+          }
+        }
+      },
+       {
+        '$match': { 
+          'year': parseInt(req.params.year)
+        }
+      },{
             '$group': {
                 '_id': '$victimAge', 
                 'count': {
