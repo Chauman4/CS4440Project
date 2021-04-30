@@ -171,6 +171,37 @@ export const getAgeAndRank = asyncHandler(async(req, res) => {
     res.json(collisions)
 })
 
+export const getGenderRatio = asyncHandler(async(req, res) => {
+    const pipeline = [
+        {
+          '$group': {
+            '_id': '$victimSex', 
+            'count': {
+              '$sum': 1
+            }
+          }
+        }
+      ]
+    const collisions = await Collisions.aggregate(pipeline)
+    res.json(collisions)
+})
+
+export const getRaceRatio = asyncHandler(async(req, res) => {
+    const pipeline = [
+        {
+          '$group': {
+            '_id': '$victimDescent', 
+            'count': {
+              '$sum': 1
+            }
+          }
+        }
+      ]
+    const collisions = await Collisions.aggregate(pipeline)
+    res.json(collisions)
+})
+
+
 export async function testing() {
     const test = await Collisions.find({victimSex: "M"});
     return test

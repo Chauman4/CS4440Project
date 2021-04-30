@@ -19,6 +19,7 @@ import BarGraphGenderByMonth from './components/BarGraphGenderByMonth';
 
 import BarGraphHolidays from './components/BarGraphHolidays';
 import BarGraphAgeRank from './components/BarGraphAgeRank';
+import PieChartHandler from './components/PieChartHandler';
 
 const MongoClient = require('mongodb').MongoClient;
 const assert = require('assert');
@@ -55,6 +56,7 @@ class App extends Component {
           <Route path="/1" component={HeatMap}/>
           <Route path="/2" component={BarGraphRaceAgeGender}/>
           <Route path="/4" component={BarGraphGenderByMonth}/>
+          <Route path="/5" component={PieChartHandler}/>
           <Route path="/7" component={DateWMostCollisionsPerQuadrant}/>
           <Route path="/9" component={BarGraphHolidays}/>
           <Route path="/10" component={TableauBarGraph}/>
