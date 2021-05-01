@@ -61,6 +61,7 @@ function PieChart(props) {
     arc
       .append('path')
       .attr('d', arcGenerator)
+    
       .style('fill', (_, i) => colorScale(i))
       .style('stroke', '#ffffff')
       .style('stroke-width', 0);
@@ -78,7 +79,12 @@ function PieChart(props) {
       });
   }    
 
-  return <div id="pie-container" ref={ref} />;
+  return (
+    <div>
+        <h1>Race/Gender Ratio</h1>
+        <div id="pie-container" ref={ref}/>
+    </div>
+  );
 }
 
 export default PieChart;

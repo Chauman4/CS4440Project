@@ -32,7 +32,6 @@ class BarGraphAgeRank extends Component {
                 x: element[Object.keys(element)[0]],
                 y: element[Object.keys(element)[1]]
             }))
-            //.sort((a, b) => a.y > b.y ? -this.state.rank : this.state.rank)
             this.setState({collisions: cleanedData})
             console.log('Data has been received!!');
         })

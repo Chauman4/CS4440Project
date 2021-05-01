@@ -47,7 +47,7 @@ export const getCollisionByRaceAgeGender  = asyncHandler(async(req, res) => {
             }
         }, {
             '$group': {
-                '_id': '$zipCode', 
+                '_id': '$areaName', 
                 'count': {
                     '$sum': 1
                 }
@@ -217,18 +217,18 @@ export const getRaceRatio = asyncHandler(async(req, res) => {
 export const getCollisionGroupByDate  = asyncHandler(async(req, res) => {
     console.log(req.body)
     console.log(req.params)
-    var stringdatelt = req.params.yearmaxOccurred + '-12-31'
-    var stringdategt = req.params.yearminOccurred + '-01-01'
+    var stringdatelte = req.params.yearOccurred + '-12-31'
+    var stringdategte = req.params.yearOccurred + '-01-01'
     //var stringdatelt = 'December 31, ' + req.params.yearminOccurred + ' 05:00:00 GMT'
     //var stringdategt = 'January 01, ' + req.params.yearmaxOccurred + ' 05:00:00 GMT'
-    console.log('1' + stringdatelt)
-    console.log('2' + stringdategt)
+    console.log('1' + stringdatelte)
+    console.log('2' + stringdategte)
     const pipeline = [
         {
           '$match': {
             'dateOccurred': {
-              '$lte': new Date(stringdatelt), 
-              '$gte': new Date(stringdategt)
+              '$lte': new Date(stringdatelte), 
+              '$gte': new Date(stringdategte)
             }
           }
         },  {

@@ -8,7 +8,7 @@ import BarGraph from './BarGraph';
 import { Col, Form } from "react-bootstrap";
 import './BarGraphContainer.css';
 
-function BarGraphContainer(props) {    
+function BarGraphContainer(props) {
     const [data, setData] = useState()
     const [isOpen, setIsOpen] = useState(false)
     const [filteredData, setFilteredData] = useState()

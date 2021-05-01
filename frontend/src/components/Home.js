@@ -4,10 +4,10 @@ import React from 'react';
 function Home() {
     return (
         <div className="container">
-            <h1 className="display-4">Welcome to CS4440 Project: Traffic Collision Data Visualizer</h1>
+            <h1 className="display-4">Welcome to Group 8's CS4440 Project: LA Traffic Collision Data Visualizer</h1>
             <br/>
             <h4>
-                To get started, click on any of the the nav bar at the top
+                To get started, click on any of the nav bar at the top
             </h4>
         </div>
     )

@@ -95,7 +95,6 @@ class BarGraphRaceAgeGender extends Component {
     displayCollisions = (collision) => {
 
         if (!collision) return null;
-        //console.log(collision)
     
         return (
           <div>
@@ -118,79 +117,47 @@ class BarGraphRaceAgeGender extends Component {
     render() {
         return (
             <div>
-                <form onSubmit={this.handleSubmit}>
-                            <label >Enter collision id: </label>
-                            <input
-                            id="name"
-                            type="text"
-                            value={this.state.id}
-                            onChange={this.handleChange}
-                            />
-                            <button type="submit">Submit</button>
-                        </form>
-                        <form onSubmit={this.handleSubmitGen}>
-                            <label >Enter gender: </label>
-                            <input
-                            id="name"
-                            type="text"
-                            value={this.state.victimSex}
-                            onChange={this.handleChangeGen}
-                            />
-                            <button type="submit">Submit</button>
-                        </form>
-                        <form onSubmit={this.handleSubmitRaceAgeGender}>
-                            <label >Enter gender: </label>
-                            <input
-                            id="gender"
-                            type="text"
-                            value={this.state.victimSex}
-                            onChange={this.handleChangeGen}
-                            />
-                            <label >Enter Min Age: </label>
-                            <input
-                            id="minAge"
-                            type="text"
-                            value={this.state.victimMinAge}
-                            onChange={this.handleChangeMinAge}
-                            />
-                            <label >Enter Max Age: </label>
-                            <input
-                            id="maxAge"
-                            type="text"
-                            value={this.state.victimMaxAge}
-                            onChange={this.handleChangeMaxAge}
-                            />
-                            <label >Enter Race: </label>
-                            <input
-                            id="descent"
-                            type="text"
-                            value={this.state.victimDescent}
-                            onChange={this.handleChangeRace}
-                            />
-                            <button type="submit">Submit</button>
-                        </form>
-                        {/* <p>{this.state.drNumber}</p>
-                        <p>{this.state.dateOccured}</p>
-                        <p>{this.state.timeOccured}</p>
-                        <p>{this.state.areaName}</p>
-                        <p>{this.state.victimSex}</p>
-                        <p>{this.state.victimDescent}</p>
-                        <p>{this.state.address}</p>
-                        <p>{this.state.crossStreet}</p>
-                        <p>{this.state.longitude}</p>
-                        <p>{this.state.latitude}</p>
-                        <p>{this.state.quadrant}</p>
-                        <p>{this.state.zipCode}</p> */}
-                        <div>
-                        {this.displayCollisions(this.state.collisions[0])}
-                        {console.log(typeof(this.state.collisions))}
-                        {/* <BarGraphContainer data = {data}/> */}
-                        <BarGraphContainer xAxis="Zip Code" yAxis="Count" orientation="Vertical" data={this.state.collisions}/>
-                        {/* <div>
-                        {getCollisionByGender}
-                        </div> */}
-                        {/* {testing} */}
-                    </div>
+                <form onSubmit={this.handleSubmitRaceAgeGender}>
+                    <label >Enter Race: </label>
+                    <input
+                    id="descent"
+                    type="text"
+                    value={this.state.victimDescent}
+                    onChange={this.handleChangeRace}
+                    />
+                    <br/>
+                    <label >Enter Min Age: </label>
+                    <input
+                    id="minAge"
+                    type="text"
+                    value={this.state.victimMinAge}
+                    onChange={this.handleChangeMinAge}
+                    />
+                    <br/>
+                    <label >Enter Max Age: </label>
+                    <input
+                    id="maxAge"
+                    type="text"
+                    value={this.state.victimMaxAge}
+                    onChange={this.handleChangeMaxAge}
+                    />
+                    <br/>
+                    <label >Enter gender: </label>
+                    <input
+                    id="gender"
+                    type="text"
+                    value={this.state.victimSex}
+                    onChange={this.handleChangeGen}
+                    />
+                    <br/>
+                    <button type="submit">Submit</button>
+                </form>
+                <div>
+                    {/* {this.displayCollisions(this.state.collisions[0])} */}
+                    {/* {console.log(typeof(this.state.collisions))} */}
+                    <h1>Number of Collisions by Race, Age Group, Gender per Area Name</h1>
+                    <BarGraphContainer xAxis="Area Name" yAxis="Count" orientation="Vertical" data={this.state.collisions}/>
+                </div>
             </div>  
         )
     }

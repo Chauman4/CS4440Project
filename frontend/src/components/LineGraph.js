@@ -24,30 +24,24 @@ class LineGraph extends Component {
             latitude: '',
             zipCode: '',
             quadrant: '',
-            yearminOccurred: '',
-            yearmaxOccurred: '',
+            yearOccurred: '',
             collisions: [] 
           }
         }
     
-        handleChangeminYear = (event) => {
-          this.setState({ yearminOccurred: event.target.value });
-          console.log(event.target.value);
-        }
-    
-        handleChangemaxYear = (event) => {
-          this.setState({ yearmaxOccurred: event.target.value });
+        handleChangeYear = (event) => {
+          this.setState({ yearOccurred: event.target.value });
           console.log(event.target.value);
         }
     
         handleSubmitGroupByDate = (event) => {
-          axios.get(`http://localhost:5000/api/collisions/getGroupByDate/${encodeURIComponent(this.state.yearminOccurred)}/${encodeURIComponent(this.state.yearmaxOccurred)}`)
+          axios.get(`http://localhost:5000/api/collisions/getGroupByDate/${encodeURIComponent(this.state.yearOccurred)}`)
           .then((response) => {
               const data = response.data;
               var cleanedData = data.map((element, i) => ({
                 label: element[Object.keys(element)[0]],
                 value: element[Object.keys(element)[1]]
-              }))
+              })).sort((a,b) => a.label > b.label ? 1 : -1)
               this.setState({ collisions : cleanedData});
               console.log(this.state.collisions);
               console.log('Data has been received!!');
@@ -61,23 +55,16 @@ class LineGraph extends Component {
         return (
             <div>
               <form>
-                <label >Enter minimum year: </label>
+                <label >Enter year: </label>
                   <input
-                    id="minYear"
+                    id="year"
                     type="text"
-                    value={this.state.yearminOccurred}
-                    onChange={this.handleChangeminYear}
+                    value={this.state.yearOccurred}
+                    onChange={this.handleChangeYear}
                     />
-                <label >Enter maximum year: </label>
-                <input
-                  id="maxYear"
-                  type="text"
-                  value={this.state.yearmaxOccurred}
-                  onChange={this.handleChangemaxYear}
-                />
                 <button type="submit" onClick={this.handleSubmitGroupByDate}>Submit</button>
             </form>
-            <LineGraphCreation data={this.state.collisions}/>
+            <LineGraphCreation data={this.state.collisions} year={this.state.yearOccurred}/>
           </div>
         )
     }

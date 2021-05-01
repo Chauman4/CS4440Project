@@ -37,8 +37,6 @@ class BarGraphHolidays extends Component {
         axios.get(`http://localhost:5000/api/collisions/getHoliday/${encodeURIComponent(this.state.year)}`)
         .then((response) => {
             const data = response.data;
-            console.log(typeof(data))
-            console.log(data);
             var cleanedData = data.map((element, i) => ({
                 x: element[Object.keys(element)[0]],
                 y: element[Object.keys(element)[1]]
@@ -70,6 +68,7 @@ class BarGraphHolidays extends Component {
                         <button type="submit">Submit</button>
                 </form>
                 <div>
+                    <h1>Number of Collisions During Holidays in a Given Year</h1>
                     <BarGraphContainer xAxis="Holiday" yAxis="Count" orientation="Vertical" data={this.state.collisions}/>
                 </div>
             </div>  

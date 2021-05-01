@@ -23,6 +23,14 @@ class BarGraph extends Component {
     };
   }
 
+  componentDidUpdate(prevProps) {
+    if (this.props.data !== prevProps.data) {
+        this.setState({
+          data: this.props.data
+        })
+      }
+  }
+
   render() {
     var data = this.props.data;
     var orientation = this.state.orientation == "Horizontal" ? <HorizontalBarSeries

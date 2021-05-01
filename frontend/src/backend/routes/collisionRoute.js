@@ -36,5 +36,5 @@ router.route('/getGenderRatio/:rank').get(getGenderRatio)
 
 router.route('/getRaceRatio/:rank').get(getRaceRatio)
 
-router.route('/getGroupByDate/:yearminOccurred/:yearmaxOccurred').get(getCollisionGroupByDate)
+router.route('/getGroupByDate/:yearOccurred').get(getCollisionGroupByDate)
 export default router
