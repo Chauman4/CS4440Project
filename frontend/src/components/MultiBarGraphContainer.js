@@ -87,7 +87,7 @@ class MultiBarGraphContainer extends React.Component {
                     {this.state.data && Object.keys(this.state.data).length ? 
                         <DropdownButton 
                             id="dropdown-basic-button" 
-                            title="ZipCodes" 
+                            title="Month of Year" 
                             show={this.state.isOpen} 
                             onClick={this.handleOpen}>
                             {
