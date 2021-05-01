@@ -7,7 +7,8 @@ import {
     getCollisionByHoliday,
     getAgeAndRank,
     getGenderRatio,
-    getRaceRatio
+    getRaceRatio,
+    getCollisionGroupByDate
 } from "../controllers/collisionController.js";
 import express from 'express'
 const router = express.Router()
@@ -35,4 +36,5 @@ router.route('/getGenderRatio/:rank').get(getGenderRatio)
 
 router.route('/getRaceRatio/:rank').get(getRaceRatio)
 
+router.route('/getGroupByDate/:yearminOccurred/:yearmaxOccurred').get(getCollisionGroupByDate)
 export default router

@@ -214,6 +214,38 @@ export const getRaceRatio = asyncHandler(async(req, res) => {
     res.json(collisions)
 })
 
+export const getCollisionGroupByDate  = asyncHandler(async(req, res) => {
+    console.log(req.body)
+    console.log(req.params)
+    var stringdatelt = req.params.yearmaxOccurred + '-12-31'
+    var stringdategt = req.params.yearminOccurred + '-01-01'
+    //var stringdatelt = 'December 31, ' + req.params.yearminOccurred + ' 05:00:00 GMT'
+    //var stringdategt = 'January 01, ' + req.params.yearmaxOccurred + ' 05:00:00 GMT'
+    console.log('1' + stringdatelt)
+    console.log('2' + stringdategt)
+    const pipeline = [
+        {
+          '$match': {
+            'dateOccurred': {
+              '$lte': new Date(stringdatelt), 
+              '$gte': new Date(stringdategt)
+            }
+          }
+        },  {
+            '$group': {
+              '_id': '$dateOccurred', 
+              'count': {
+                '$sum': 1
+              }
+            }
+        }
+      ]
+    console.log('before agg')
+    const collisions = await Collisions.aggregate(pipeline)
+    console.log(collisions)
+    res.json(collisions)
+})
+
 
 export async function testing() {
     const test = await Collisions.find({victimSex: "M"});

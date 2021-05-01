@@ -16,7 +16,7 @@ import axios from "axios";
 import Collisions from './backend/models/Schema.js'
 import BarGraphRaceAgeGender from './components/BarGraphRaceAgeGender';
 import BarGraphGenderByMonth from './components/BarGraphGenderByMonth';
-
+import LineGraph from './components/LineGraph';
 import BarGraphHolidays from './components/BarGraphHolidays';
 import BarGraphAgeRank from './components/BarGraphAgeRank';
 import PieChartHandler from './components/PieChartHandler';
@@ -55,6 +55,7 @@ class App extends Component {
           <Route exact path="/" component={Home}/>
           <Route path="/1" component={HeatMap}/>
           <Route path="/2" component={BarGraphRaceAgeGender}/>
+          <Route path="/3" component={LineGraph}/>
           <Route path="/4" component={BarGraphGenderByMonth}/>
           <Route path="/5" component={PieChartHandler}/>
           <Route path="/7" component={DateWMostCollisionsPerQuadrant}/>
