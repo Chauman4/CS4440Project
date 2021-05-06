@@ -19,3 +19,27 @@ The images below show an example of the website working and with a dataset runni
 <div>
   <img src="https://github.com/Chauman4/CS4440Project/blob/main/RaceAgeGender.png" height="400">
 </div>
+<div>
+  <img src="https://github.com/Chauman4/CS4440Project/blob/main/PieChart.png" height="400">
+</div>
+<div>
+  <img src="https://github.com/Chauman4/CS4440Project/blob/main/LineGraph.png" height="400">
+</div>
+<div>
+  <img src="https://github.com/Chauman4/CS4440Project/blob/main/Holidays.png" height="400">
+</div>
+<div>
+  <img src="https://github.com/Chauman4/CS4440Project/blob/main/HeatMap.png" height="400">
+</div>
+<div>
+  <img src="https://github.com/Chauman4/CS4440Project/blob/main/GenderByMonth.png" height="400">
+</div>
+<div>
+  <img src="https://github.com/Chauman4/CS4440Project/blob/main/DaysWithMostCollisionsPerArea.png" height="400">
+</div>
+<div>
+  <img src="https://github.com/Chauman4/CS4440Project/blob/main/DataWithMostCollisionsPerQuadrant.png" height="400">
+</div>
+<div>
+  <img src="https://github.com/Chauman4/CS4440Project/blob/main/Collisions.png" height="400">
+</div>
