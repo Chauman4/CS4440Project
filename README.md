@@ -1,8 +1,9 @@
 # CS4440Project
 
-The link to the dataset is https://www.kaggle.com/cityofLA/los-angeles-traffic-collision-data. We added this dataset in the repo as a compressed zip file since the dataset is 174 MB, which exceeds the max size, 100 MB, of a file that can be added in GitHub. To use the dataset, extract the dataset from the zip folder and then run the python script in database.py.
+The link to the dataset is https://www.kaggle.com/cityofLA/los-angeles-traffic-collision-data. We added this dataset in the repo as a compressed zip file since the dataset exceeds the max size in GitHub. To use the dataset, extract the dataset from the zip folder and then run the python script in database.py. Then, use excel to delete the 1st column and the location column and then run the python script in quadrantCalculator.py to get all the data we use for this project.
 
-1. To run, make sure all dependencies are installed
+Instructions to run the application.
+1. To run, make sure all dependencies are installed (npm installs and pips).
 2. Then run npm start in the src folder in frontend and make sure it runs on localhost 3000.
 3. Make sure MongoDB Compass is connected to the localhost:27017 server. 
 4. Import data.csv and make sure all the fields are the same type and name as the fields in Schema.js.
