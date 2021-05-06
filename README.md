@@ -11,3 +11,11 @@ Instructions to run the application.
 6. Then run node server.js in the src folder in frontend and make sure it runs on localhost 5000.
 7. If you do not see the collections, then refresh MongoDB Compass.
 8. Then, go to localhost 3000 and the website should be running and working.
+
+The images below show an example of the website working and with a dataset running correctly.
+<div>
+  <img align="right" src="https://github.com/Chauman4/CS4440Project/blob/main/RaceAgeGender.png" height="200">
+</div>
+<div>
+  <img align="right" src="https://github.com/Chauman4/CS4440Project/blob/main/HomePage.png" height="200">
+</div>
