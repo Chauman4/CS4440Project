@@ -14,8 +14,8 @@ Instructions to run the application.
 
 The images below show an example of the website working and with a dataset running correctly.
 <div>
-  <img align="right" src="https://github.com/Chauman4/CS4440Project/blob/main/RaceAgeGender.png">
+  <img align="right" src="https://github.com/Chauman4/CS4440Project/blob/main/HomePage.png">
 </div>
 <div>
-  <img align="right" src="https://github.com/Chauman4/CS4440Project/blob/main/HomePage.png">
+  <img align="right" src="https://github.com/Chauman4/CS4440Project/blob/main/RaceAgeGender.png">
 </div>
