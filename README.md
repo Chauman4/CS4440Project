@@ -9,4 +9,5 @@ Instructions to run the application.
 4. Import data.csv and make sure all the fields are the same type and name as the fields in Schema.js.
 5. If using Mac, run brew services start mongodb-community. If this doesn't work, then run brew services restart mongodb-community.
 6. Then run node server.js in the src folder in frontend and make sure it runs on localhost 5000.
-7. If you do not see the collections, then refresh MongoDB Compass. 
+7. If you do not see the collections, then refresh MongoDB Compass.
+8. Then, go to localhost 3000 and the website should be running and working.
