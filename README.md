@@ -1,5 +1,7 @@
 # CS4440Project
 
+Open INSTRUCTIONS.pdf for more details about the project.
+
 The link to the dataset is https://www.kaggle.com/cityofLA/los-angeles-traffic-collision-data. We added this dataset in the repo as a compressed zip file since the dataset exceeds the max size in GitHub. To use the dataset, extract the dataset from the zip folder and then run the python script in database.py. Then, use excel to delete the 1st column and the location column and then run the python script in quadrantCalculator.py to get all the data we use for this project.
 
 Instructions to run the application.
